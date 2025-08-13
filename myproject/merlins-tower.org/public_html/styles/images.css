@@ -1,0 +1,20 @@
+@import "var.css";
+
+img {
+    object-fit: cover;
+    margin: 0;
+
+}
+
+body {
+    img {
+        width: var(--img-width, 400px);
+    }
+}
+
+header {
+    img {
+        width: var(--header-img-width, 800px);
+        height: var(--header-img-height, 20vh);
+    }
+}

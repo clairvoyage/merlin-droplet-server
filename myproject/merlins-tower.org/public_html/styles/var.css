@@ -1,0 +1,45 @@
+:root {
+    --bg-color: #EEEDE8;
+    --text-color: #292626;
+    --link-color: #3a422a;
+    --link-hover-bg-color: #c1c1a5;
+    --form-field-color: #f6f6f2;
+    --form-field-border: #c9cac4;
+    --invalid-text-color: #ba0101;
+    --invalid-border-color: #ba0101;
+
+    --submit-color: #454542;
+    --submit-background-color: #bfbfaa;
+    --submit-border: #b9bab1;
+
+    --margin: 2vw 10vw;
+    --gap: 0.5rem;
+    --col-gap: 10vw;
+    --row-gap: 2rem;
+    --grid-gap: 2vw;
+
+    --horizontal-rule-margin: 0rem 0rem 2rem;
+    --horizontal-rule-maxheight: 60vh;
+
+    --font-size: 1.2rem;
+    --main-font: wittgenstein-regular;
+    --header-font: wittgenstein-semibold-italic;
+    --text-margin: 0rem 0rem 1rem 0rem;
+    --text-font-size: 1.1rem;
+    --text-line-height: 1.2em;
+    --bottom-margin: 0.5rem;
+
+
+    --nav-gap: 2rem;
+    --nav-font-size: 1rem;
+
+    --img-width: 80vw;
+    --img-maxheight: 80vw;
+    --header-img-height: 20vh;
+    --header-img-width: 80vw;
+    --page-icon-dim: 2rem;
+
+    --img-width-twocol: 40vw;
+    --img-height-twocol: 30vw;
+
+}

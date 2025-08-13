@@ -1,0 +1,6 @@
+@media(max-width: 700px) {
+    #header-img {
+        width: var(10px) !important;
+        height: var(10px) !important;
+    }
+}

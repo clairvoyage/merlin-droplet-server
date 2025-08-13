@@ -1,0 +1,25 @@
+h1,h2,h3,h4 {
+    font-family: var(--header-font), serif;
+    margin: var(--text-margin, 10px);
+    margin-bottom: var(--bottom-margin, 10px);
+    line-height: var(--text-line-height, 20px);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    margin: var(--text-margin, 10px);
+    font-size: var(--text-font-size, 15px);
+}
+
+footer {
+    p {
+        font-size: 1rem;
+    }
+}
