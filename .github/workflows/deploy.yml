@@ -18,7 +18,7 @@ jobs:
         sudo apt-get install sshpass
     - name: Deploy to server
       run: |
-        sshpass -p '${{ secrets.SSH_PASSWORD }} ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
         cd /var/www
         git pull origin main
         
