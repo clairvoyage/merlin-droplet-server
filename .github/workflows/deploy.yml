@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    # - name: Get SSH key and set permissions
-    #   run: |
-    #     mkdir -p ~/.ssh
-    #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-    #     chmod 600 ~/.ssh/id_rsa
     - name: Execute remote SSH commands
       uses: appleboy/ssh-action@v1.2.2
       with: 
@@ -24,7 +19,7 @@ jobs:
         password: ${{secrets.SERVER_USER_PASSWORD}}
         passphrase: ${{secrets.SSH_PASSWORD}}
         script: |
-          cd /var/www
+          cd ${{ secrets.REPO_PATH }}
           git pull origin main
 
         
