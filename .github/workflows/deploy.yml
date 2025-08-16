@@ -1,0 +1,21 @@
+name: Deploy Project
+
+on: 
+  push:
+    branches: 
+      - main
+
+jobs:  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Get SSH key and set permissions
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~.ssh/id_rsa
+    - name: Pull changes
+      run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@{{ secrets.SSH_HOST }} "cd /var/www && git pull origin main"
+        
+
+    
