@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-# use CGI::Carp qw(fatalsToBrowser warningsToBrowser);
-
 # In Perl, you must first install the JSON package from CPAN (the Perl equivalent to npm)
 use JSON;
 
