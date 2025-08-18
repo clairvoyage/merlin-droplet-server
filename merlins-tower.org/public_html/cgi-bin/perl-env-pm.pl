@@ -11,6 +11,7 @@ print header;
 print start_html("Environment Variables");
 
 print "<h1 align='center'>Environment Variables</h1><hr />";
+print "<p>Added by Merlin</p>";
 
 # Loop through all of the environment variables, then print each variable and its value
 foreach my $key (sort(keys(%ENV))) {
