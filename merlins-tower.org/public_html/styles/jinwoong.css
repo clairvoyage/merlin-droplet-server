@@ -1,0 +1,91 @@
+:root {
+  --special-color: #26f57c;
+  --text-color: white;
+  --background-color: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+header {
+  background: #222;
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 1rem;
+}
+
+.navbar li {
+  margin: 0 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li:has(a:hover) {
+  background: rgba(38, 245, 124, 0.3);
+  border-radius: 5px;
+}
+
+main {
+  padding: 2rem;
+}
+
+.highlight-name {
+  color: var(--special-color);
+  font-weight: bold;
+}
+
+.intro {
+  margin-bottom: 2rem;
+}
+
+.about-more-info {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.skills, .fun-facts {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.skills {
+  background: #baffb6;
+  color: black;
+}
+
+.fun-facts {
+  background: #222;
+  color: white;
+}
+
+.skills-list, .fun-facts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills:hover, .fun-facts:hover {
+    transform: scale(1.05); /* Subtle scaling effect */
+}
+
+footer {
+  text-align: left;
+  padding: 2rem;
+}
