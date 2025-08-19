@@ -16,5 +16,6 @@ print("Content-type: text/html\n\n")
 print("<html><body>")
 print("<h1>Hello world, from Merlin and Jinwoong!</h1>")
 print("<h3>Current time: {0}</h3>".format(current_time))
-print("<h3>IP Address: {0}</h3>".format(' '.join(IPAdrress)))
+print("<h3>IP Address: {0}</p>".format(' '.join(IPAdrress)))
+
 print("</body></html>")
