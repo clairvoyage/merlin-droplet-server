@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 header('Cache-Control: no-cache');
