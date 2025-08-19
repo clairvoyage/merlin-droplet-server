@@ -7,7 +7,8 @@ echo "<html>";
 echo "<head><title>Hello, PHP!</title></head>";
 echo "<body>";
 
-echo "<h1>Hello World</h1>";
+echo "<h1 align=center>Hello PHP World</h1>";
+echo "<hr/>";
 echo "<p>This page was generated with the PHP programming language</p>";
 
 $date = date("Y-m-d H:i:s");
