@@ -1,29 +1,29 @@
-#!/usr/bin/php
 <?php
 header("Cache-Control: no-cache");
 header("Content-type: text/html");
+?>
 
-echo <<<HTML
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Environment Variables</title>
+    <title>Environment Variables</title>
 </head>
 <body>
-  <h1 align="center">Environment Variables</h1>
-  <hr>
-HTML;
+    <h1 align="center">Environment Variables</h1>
+    <hr>
 
-// Environment variables (PHP stores these in $_SERVER and $_ENV)
-$env_vars = array_merge($_SERVER, $_ENV);
-ksort($env_vars);
+    <h2>Environment Variables:</h2>
+    <?php
+    foreach ($_ENV as $key => $value) {
+        echo "<b>$key:</b> $value<br />\n";
+    }
+    ?>
 
-foreach ($env_vars as $key => $value) {
-    echo "<b>$key:</b> $value<br />\n";
-}
-
-echo <<<HTML
+    <h2>Server Variables</h2>
+    <?php
+    foreach ($_SERVER as $key => $value) {
+        echo "<b>$key:</b> $value<br />\n";
+    }
+    ?>
 </body>
 </html>
-HTML;
-?>

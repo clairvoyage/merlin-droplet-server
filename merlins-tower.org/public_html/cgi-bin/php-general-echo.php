@@ -18,7 +18,6 @@ header("Content-type: text/html");
 
     <p><b>Message Body:</b>
     <?php
-        // Read raw body (works for POST, PUT, DELETE, etc.)
         $body = file_get_contents("php://input");
         echo nl2br(htmlspecialchars($body));
     ?>
