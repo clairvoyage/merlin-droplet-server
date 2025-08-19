@@ -14,7 +14,7 @@ header("Content-type: text/html");
 
     <h2>Environment Variables:</h2>
     <?php
-    foreach ($_ENV as $key => $value) {
+    foreach (getenv() as $key => $value) {
         echo "<b>$key:</b> $value<br />\n";
     }
     ?>
