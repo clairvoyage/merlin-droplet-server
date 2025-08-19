@@ -7,5 +7,5 @@ print("Content-type: text/html\n\n")
 
 # Hello world in an HTML document
 print("<html><body>")
-print("<h1>Hello world, from our team!</h1>")
+print("<h1>Hello world, from Merlin and Jinwoong!</h1>")
 print("</body></html>")
