@@ -7,5 +7,9 @@ import cgi
 print("Cache-Control: no-cache\n")
 print("Content-type: application/json\n\n")
 
-print(json.dumps({"title": "Hello Python!", "heading": "Hello Python!"}))
+data = {"title": "Hello Python!", "heading": "Hello Python!"}
+json_string = json.dumps(data, indent=4)
 
+# Write to JSON file
+with open ("../json/python-hello-json-world.json", "w") as f:
+    f.write(json_string)
