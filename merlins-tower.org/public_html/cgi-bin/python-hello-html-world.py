@@ -15,7 +15,6 @@ print("Content-type: text/html\n\n")
 # Hello world in an HTML document
 print("<html><body>")
 print("<h1>Hello world, from Merlin and Jinwoong!</h1>")
-print("<p>Current time: " + current_time + "</p>")
-print("<p>IP Address: " + ' '.join(IPAdrress) + "</p>")
-
+print("<h3>Current time: {0}</h3>".format(current_time))
+print("<h3>IP Address: {0}</h3>".format(' '.join(IPAdrress)))
 print("</body></html>")
