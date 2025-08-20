@@ -4,7 +4,6 @@ cgitb.enable()
 
 # Headers
 print("Content-type: text/html\n\n")
-print("Cache-Control: no-cache\n")
 
 # Set up Python session
 session = requests.Session()
