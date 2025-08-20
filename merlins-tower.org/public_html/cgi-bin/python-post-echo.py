@@ -5,7 +5,7 @@ cgitb.enable()
 print("Content-type: text/html\n\n")
 print("Message body: <br>")
 
-post_body = str(sys.stdin)
+post_body = sys.stdin.read()
 params = post_body.split('&')
 
 for param in params:
