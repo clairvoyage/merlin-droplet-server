@@ -8,5 +8,5 @@ print("Cache-Control: no-cache\n")
 
 # Set up Python session
 session = requests.Session()
-session.headers.update({"CGISESSID": secrets.token_urlsafe(16)})
+session.close()
 
