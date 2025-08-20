@@ -11,8 +11,11 @@ params = query_string.split('&')
 for param in params:
     param = param.split('=')
     name = param[0]
-    value = param[1]
-    print("{0} = {1}".format(name, value))
+    if(len(param)) > 1:
+        value = param[1]
+        print("{0} = {1}\n".format(name, value))
+        continue
+    print("{0}\n".format(name))
 
 
 
