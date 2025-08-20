@@ -10,3 +10,7 @@ print("Cache-Control: no-cache\n")
 session = requests.Session()
 session.close()
 
+print("Destroyed session")
+print("<a href=\"/python-cgiform.html\">CGI Form</a>")
+print("<a href=\"/cgi-bin/python-sessions-1.py\">Session 1</a>")
+print("<a href=\"/cgi-bin/python-sessions-2.py\">Session 2</a>")

@@ -19,6 +19,7 @@ else:
     print("Name: {0}".format(session.headers.get("Cookie")))
 
 print("<a href=\"/python-cgiform.html\">CGI Form</a>")
-print("<form style=\"margin-top:30px\" action=\"/cgi-bin/php-destroy-cookie-session.php\" method=\"get\">")
+print("<a href=\"/cgi-bin/python-sessions-2.py\">Session 2</a>")
+print("<form style=\"margin-top:30px\" action=\"/cgi-bin/python-destroy-session.php\" method=\"get\">")
 print("<button type=\"submit\">Destroy Session</button>")
 print("</form>")
