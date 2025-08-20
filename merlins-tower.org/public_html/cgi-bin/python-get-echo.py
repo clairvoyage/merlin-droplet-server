@@ -1,6 +1,12 @@
 #!/usr/bin/python3
-# Importing the JSON module and cgi module
-import json
-import cgi
-import socket
+import os
+
+query_string = os.environ.get("QUERY_STRING");
+params = query_string.split('&')
+for param in params:
+    print(params)
+
+
+
+
 
