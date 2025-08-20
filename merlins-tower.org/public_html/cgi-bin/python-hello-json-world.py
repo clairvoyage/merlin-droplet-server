@@ -15,9 +15,9 @@ IPAddress = socket.gethostbyname(host + ".local")
 print("Cache-Control: no-cache\n")
 print("Content-type: application/json\n\n")
 
-data = {"title": "Hello Python!", "heading": "Hello Python!", "date-time": current_time.strftime("%Y-%m-%d %H:%M:%S"), "IP-address": str(type(IPAddress))}
+data = {"title": "Hello Python!", "heading": "Hello Python!", "date-time": current_time.strftime("%Y-%m-%d %H:%M:%S"), "IP-address": IPAddress}
 hello_python_json = json.dumps(data, indent=4)
 
 # Write to JSON file
-with open ("../json/python-hello-json-world.json", "w") as f:
+with open ("/var/www/merlins-tower.org/public_html/json/python-hello-json-world.json", "w") as f:
     f.write(hello_python_json)
