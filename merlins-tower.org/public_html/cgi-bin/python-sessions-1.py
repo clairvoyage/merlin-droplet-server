@@ -7,9 +7,8 @@ print("Content-type: text/html\n\n")
 
 username = sys.stdin.read()
 
-# Set up Python session
-session = requests.Session()
-session.headers.update({"Cookie": username})
+# Set up Python cookie
+os.getenv({"Cookie": username})
 
 cookie = session.headers.get("Cookie")
 if cookie == "" or cookie == None:
