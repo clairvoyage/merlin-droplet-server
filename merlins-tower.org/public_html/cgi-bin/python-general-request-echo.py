@@ -12,11 +12,11 @@ print("Method: {0}<br>".format(method))
 
 params = ""
 
-if protocol == "GET":
+if method == "GET":
     query_string = os.environ.get("QUERY_STRING")
     params = query_string.split('&')
 
-if protocol == "POST":
+if method == "POST":
     post_body = sys.stdin.read()
     params = post_body.split('&')
 
