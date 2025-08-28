@@ -6,12 +6,12 @@
 
 @font-face {
     font-family: wittgenstein-regular;
-    src: url(/styles/fonts/Wittgenstein-Regular.ttf);
+    src: url(fonts/Wittgenstein-Regular.ttf);
 }
 
 @font-face {
     font-family: wittgenstein-semibold-italic;
-    src: url(/styles/fonts/Wittgenstein-SemiBoldItalic.ttf);
+    src: url(fonts/Wittgenstein-SemiBoldItalic.ttf);
 }
 
 body {

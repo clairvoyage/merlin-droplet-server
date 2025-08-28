@@ -22,8 +22,8 @@
     --horizontal-rule-maxheight: 60vh;
 
     --font-size: 1.2rem;
-    --main-font: wittgenstein-regular;
-    --header-font: wittgenstein-semibold-italic;
+    --main-font: wittgenstein-regula, serif;
+    --header-font: wittgenstein-semibold-italic, serif;
     --text-margin: 0rem 0rem 1rem 0rem;
     --text-font-size: 1.1rem;
     --text-line-height: 1.2em;
