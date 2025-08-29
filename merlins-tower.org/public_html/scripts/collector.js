@@ -26,16 +26,19 @@ function noCSS() {
 }
 
 window.addEventListener('load', function() {
-    const performanceEntry = performance.getEntriesByType("navigation")[0];
-    if (!performanceEntry) return;
+    setTimeout(function () { // allow the page to load completely before collecting
+        const performanceEntry = performance.getEntriesByType("navigation")[0];
+        if (!performanceEntry) return;
+        
 
-    const performanceData = {
-        type: "performance",
-        timing: performanceEntry,  // whole timing object object
-        loadStart: performanceEntry.fetchStart, 
-        loadEnd: performanceEntry.loadEventEnd,
-        totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart
-    };
+        const performanceData = {
+            type: "performance",
+            timing: performanceEntry,  // whole timing object object
+            loadStart: performanceEntry.fetchStart, 
+            loadEnd: performanceEntry.loadEventEnd,
+            totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart
+        };
 
-    console.log(performanceData);
+        console.log(performanceData);
+    }, 0);
 });
