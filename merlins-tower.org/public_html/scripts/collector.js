@@ -32,9 +32,9 @@ window.addEventListener('load', function() {
     const performanceData = {
         type: "performance",
         timing: performanceEntry,  // whole timing object object
-        loadStart: performanceEntry.startTime, 
+        loadStart: performanceEntry.fetchStart, 
         loadEnd: performanceEntry.loadEventEnd,
-        totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.startTime
+        totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart
     };
 
     console.log(performanceData);
