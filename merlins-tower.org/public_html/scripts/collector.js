@@ -6,19 +6,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
     
     document.cookie = "js_enabled=true; path=/"; 
     staticData["allowsJS"] = true;
+    staticData["allowImage"] = noImage();
+    staticData["allowCSS"] = noCSS();
+
+    staticData["screenDimensions"] = window.screen.height + " x " + window.screen.width
+    staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
+
+    staticData["networkConnection"] = navigator.connection; // doesn't work with firefox, safari
 
     console.log(staticData);
-    sendData(staticData);
-
-    
 });
 
-async function sendData(staticData) {
-    await fetch("../cgi-bin/php-general-echo.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(staticData)
-    });
+function noImage() {
+    return (document.getElementById("flag").offsetHeight != 0);
+}
+
+function noCSS() {
+    return (window.getComputedStyle(document.body, null).getPropertyValue("background-color") != "#FFF");
 }
