@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     staticData["allowImage"] = allowImage();
     staticData["allowCSS"] = allowCSS();
 
-    staticData["screenDimensions"] = window.screen.height + " x " + window.screen.width
+    staticData["screenDimensions"] = window.screen.height + " x " + window.screen.width;
     staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
 
     staticData["networkConnection"] = navigator.connection; // doesn't work with firefox, safari
