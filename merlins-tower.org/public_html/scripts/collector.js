@@ -73,6 +73,77 @@ window.addEventListener('load', function() {
 });
 
 // Activity Data (continuously collected)
+let activityLog = [];
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    const errorData = {
+        type: "error",
+        message: msg,
+        url: url,
+        line: lineNo,
+        column: columnNo,
+        stack: error ? error.stack : null,
+        timestamp: Date.now(),
+        session: sessionId
+    };
+    activityLog.push(errorData);
+    console.log(errorData);
+};
+
+document.addEventListener("mousemove", (event) => {
+    const activity = {
+        type: "mousemove",
+        x: event.clientX,
+        y: event.clientY,
+        timestamp: Date.now(),
+    };
+    activityLog.push(activity);
+    console.log(activity);
+});
+
+document.addEventListener('click', function(event) {
+    const activity = {
+        type: "click",
+        x: event.clientX,
+        y: event.clientY,
+        button: event.button,
+        timestamp: Date.now(),
+    };
+    activityLog.push(activity);
+    console.log(activity);
+});
+
+document.addEventListener("scroll", () => {
+    const activity = {
+        type: "scroll",
+        scrollX: window.scrollX,
+        scrollY: window.scrollY,
+        timestamp: Date.now(),
+    };
+    activityLog.push(activity);
+    console.log(activity);
+});
+
+document.addEventListener("keydown", (event) => {
+    const activity = {
+        type: "keydown",
+        key: event.key,
+        timestamp: Date.now(),
+    };
+    activityLog.push(activity);
+    console.log(activity);
+});
+
+document.addEventListener("keyup", (event) => {
+    const activity = {
+        type: "keyup",
+        key: event.key,
+        timestamp: Date.now(),
+    };
+    activityLog.push(activity);
+    console.log(activity);
+});
+
 
 /*
     Logs when user has been idle for at least two seconds
