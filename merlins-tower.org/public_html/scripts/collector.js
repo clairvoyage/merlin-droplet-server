@@ -1,3 +1,5 @@
+// Static Data
+
 document.addEventListener("DOMContentLoaded", function (event) {
     let staticData = {};
     staticData["userAgent"] = navigator.userAgent;
@@ -25,6 +27,8 @@ function noCSS() {
     return (window.getComputedStyle(document.body, null).getPropertyValue("background-color") != "#FFF");
 }
 
+// Performance Data
+
 window.addEventListener('load', function() {
     setTimeout(function () { // allow the page to load completely before collecting
         const performanceEntry = performance.getEntriesByType("navigation")[0];
@@ -42,3 +46,5 @@ window.addEventListener('load', function() {
         console.log(performanceData);
     }, 0);
 });
+
+// Activity Data (continuously collected)
