@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     
     document.cookie = "js_enabled=true; path=/"; 
     staticData["allowsJS"] = true;
-    staticData["allowImage"] = noImage();
-    staticData["allowCSS"] = noCSS();
+    staticData["allowImage"] = allowImage();
+    staticData["allowCSS"] = allowCSS();
 
     staticData["screenDimensions"] = window.screen.height + " x " + window.screen.width
     staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }).catch(err => console.warn("Failed to send staticData:", err));
 });
 
-function noImage() {
+function allowImage() {
     return (document.getElementById("flag").offsetHeight != 0);
 }
 
-function noCSS() {
+function allowCSS() {
     return (window.getComputedStyle(document.body, null).getPropertyValue("background-color") != "#FFF");
 }
 
@@ -73,3 +73,38 @@ window.addEventListener('load', function() {
 });
 
 // Activity Data (continuously collected)
+
+/*
+    Logs when user has been idle for at least two seconds
+    Based on equiman's code from 
+    https://stackoverflow.com/questions/667555/how-to-detect-idle-time-in-javascript
+*/
+window.addEventListener('load', function() {
+    let enteredPage = Date.now();
+    let time;
+    let start;
+    let end;
+    let idle = false;
+    window.onload = resetTimer;
+    // DOM Events
+    document.onmousemove = resetTimer;
+    document.onkeydown = resetTimer;
+
+    function logIdle() {
+        idle = true;
+    }
+
+    function resetTimer() {
+        if(idle == true) {
+            end = Date.now();
+            console.log(
+                "Break ended at " + end + "\n" +
+                (end-start)/1000 + "seconds since last activity"
+            );
+            idle = false;
+        }
+        start = Date.now();
+        clearTimeout(time);
+        time = setTimeout(logIdle, 2000)
+    }
+});
