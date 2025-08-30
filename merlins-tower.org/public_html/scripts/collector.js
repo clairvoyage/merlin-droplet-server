@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
 
     staticData["networkConnection"] = navigator.connection; // doesn't work with firefox, safari
-    staticData["session"] = sessionId;
 
     console.log(staticData);
 
@@ -27,7 +26,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     fetch("/json/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(staticData)
+        body: JSON.stringify({
+            type: "static",
+            data: staticData,
+            session: sessionId
+        })
     }).catch(err => console.warn("Failed to send staticData:", err));
 });
 
