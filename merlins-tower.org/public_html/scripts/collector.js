@@ -1,7 +1,6 @@
 const sessionId = crypto.randomUUID(); // ID for specific user session
 
 // Static Data
-
 document.addEventListener("DOMContentLoaded", function (event) {
     let staticData = {};
     staticData["userAgent"] = navigator.userAgent;
@@ -43,13 +42,11 @@ function allowCSS() {
 }
 
 // Performance Data
-
 window.addEventListener('load', function() {
     setTimeout(function () { // allow the page to load completely before collecting
         const performanceEntry = performance.getEntriesByType("navigation")[0];
         if (!performanceEntry) return;
         
-
         const performanceData = {
             type: "performance",
             timing: performanceEntry,  // whole timing object object
@@ -73,6 +70,7 @@ window.addEventListener('load', function() {
 });
 
 // Activity Data (continuously collected)
+<<<<<<< HEAD
 
 // Set up dictionary to log activity data
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -128,3 +126,5 @@ window.addEventListener('load', function() {
 // window.addEventListener('beforeunload', function(e) {
     
 // });
+=======
+>>>>>>> a35bff5caa6316408cd191b8ca6021ac78b7d785
