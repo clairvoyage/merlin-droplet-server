@@ -1,7 +1,7 @@
 .DS_Store
 
 # goofy python json file that keeps updating
-merlins-tower.org/public_html/json/python-hello-json-world.json
+python-hello-json-world.json
 
 # json file gets updated with requests so..
-merlins-tower.org/public_html/db.json
+db.json
