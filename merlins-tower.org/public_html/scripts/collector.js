@@ -44,6 +44,15 @@ window.addEventListener('load', function() {
         };
 
         console.log(performanceData);
+
+        // Store locally in case fetch fails
+        localStorage.setItem("performanceData", JSON.stringify(performanceData));
+
+        fetch("/json/posts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(performanceData)
+        }).catch(err => console.warn("Failed to send performanceData:", err));
     }, 0);
 });
 
