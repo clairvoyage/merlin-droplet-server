@@ -1,6 +1,6 @@
 const sessionId = crypto.randomUUID(); // ID for specific user session
 
-// Static Data
+// === Static Data ===
 
 document.addEventListener("DOMContentLoaded", function (event) {
     let staticData = {};
@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
 
     staticData["networkConnection"] = navigator.connection; // doesn't work with firefox, safari
-
-    console.log(staticData);
 
     // Store to localStorage in case fetch fails
     localStorage.setItem("staticData", JSON.stringify(staticData));
@@ -42,7 +40,7 @@ function allowCSS() {
     return (window.getComputedStyle(document.body, null).getPropertyValue("background-color") != "#FFF");
 }
 
-// Performance Data
+// === Performance Data ===
 
 window.addEventListener('load', function() {
     setTimeout(function () { // allow the page to load completely before collecting
@@ -59,8 +57,6 @@ window.addEventListener('load', function() {
             session: sessionId
         };
 
-        console.log(performanceData);
-
         // Store locally in case fetch fails
         localStorage.setItem("performanceData", JSON.stringify(performanceData));
 
@@ -72,7 +68,8 @@ window.addEventListener('load', function() {
     }, 0);
 });
 
-// Activity Data (continuously collected)
+// === Activity Data (continuously collected) ===
+
 let activityLog = [];
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -87,7 +84,6 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
         session: sessionId
     };
     activityLog.push(errorData);
-    console.log(errorData);
 };
 
 document.addEventListener("mousemove", (event) => {
@@ -98,7 +94,6 @@ document.addEventListener("mousemove", (event) => {
         timestamp: Date.now(),
     };
     activityLog.push(activity);
-    console.log(activity);
 });
 
 document.addEventListener('click', function(event) {
@@ -110,7 +105,6 @@ document.addEventListener('click', function(event) {
         timestamp: Date.now(),
     };
     activityLog.push(activity);
-    console.log(activity);
 });
 
 document.addEventListener("scroll", () => {
@@ -121,7 +115,6 @@ document.addEventListener("scroll", () => {
         timestamp: Date.now(),
     };
     activityLog.push(activity);
-    console.log(activity);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -131,7 +124,6 @@ document.addEventListener("keydown", (event) => {
         timestamp: Date.now(),
     };
     activityLog.push(activity);
-    console.log(activity);
 });
 
 document.addEventListener("keyup", (event) => {
@@ -141,7 +133,6 @@ document.addEventListener("keyup", (event) => {
         timestamp: Date.now(),
     };
     activityLog.push(activity);
-    console.log(activity);
 });
 
 
@@ -162,11 +153,9 @@ window.addEventListener('load', function() {
 
     activity = {"timeEnteredPage": enteredPage};
     activityLog.push(activity);
-    console.log(activity)
 
     activity = {"currentPage": currentPage};
     activityLog.push(activity);
-    console.log(activity)
 
     window.onload = resetTimer;
     // DOM Events
@@ -186,7 +175,6 @@ window.addEventListener('load', function() {
             idle = false;
             activity = {"idleDuration": idleTime, "endOfBreak": end};
             activityLog.push(activity);
-            console.log(activity);
         }
         startms = Date.now();
         clearTimeout(time);
@@ -222,7 +210,6 @@ window.addEventListener('beforeunload', function(e) {
     let activity = {};
     activity["timeLeftPage"] = new Date();
     activityLog.push(activity);
-    console.log(activity);
 
     const payload = {
         type: "activity",
