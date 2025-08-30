@@ -1,3 +1,5 @@
+const sessionId = crypto.randomUUID(); // ID for specific user session
+
 // Static Data
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -15,8 +17,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
     staticData["windowDimensions"] = window.innerHeight + " x " + window.innerWidth;
 
     staticData["networkConnection"] = navigator.connection; // doesn't work with firefox, safari
+    staticData["session"] = sessionId;
 
     console.log(staticData);
+
+    // Store to localStorage in case fetch fails
+    localStorage.setItem("staticData", JSON.stringify(staticData));
+
+    fetch("/json/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(staticData)
+    }).catch(err => console.warn("Failed to send staticData:", err));
 });
 
 function noImage() {
@@ -40,7 +52,8 @@ window.addEventListener('load', function() {
             timing: performanceEntry,  // whole timing object object
             loadStart: performanceEntry.fetchStart, 
             loadEnd: performanceEntry.loadEventEnd,
-            totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart
+            totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart,
+            session: sessionId
         };
 
         console.log(performanceData);
