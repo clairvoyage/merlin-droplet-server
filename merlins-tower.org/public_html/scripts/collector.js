@@ -49,7 +49,6 @@ window.addEventListener('load', function() {
         const performanceEntry = performance.getEntriesByType("navigation")[0];
         if (!performanceEntry) return;
         
-
         const performanceData = {
             type: "performance",
             timing: performanceEntry,  // whole timing object object
