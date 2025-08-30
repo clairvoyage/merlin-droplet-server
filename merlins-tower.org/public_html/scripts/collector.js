@@ -74,11 +74,6 @@ window.addEventListener('load', function() {
 
 // Activity Data (continuously collected)
 
-// Set up dictionary to log activity data
-document.addEventListener("DOMContentLoaded", function (event) {
-
-});
-
 /*
     Logs when user has been idle for at least two seconds
     Based on equiman's code from 
@@ -90,7 +85,7 @@ window.addEventListener('load', function() {
     let currentPage = this.window.location.href;
     let time;
     let end;
-    let  startms; // start in milliseconds
+    let startms; // start in milliseconds
     let endms; // end in milliseconds
     let idle = false;
     let idleTimes = {};
@@ -122,9 +117,26 @@ window.addEventListener('load', function() {
         time = setTimeout(logIdle, 2000)
     }
     activityData["idleTimes"] = idleTimes;
+    setInterval(sendActivityData, 1000); 
 });
 
 // Get time user left current page
 window.addEventListener('beforeunload', function(e) {
     activityData["timeLeftPage"] = new Date();
 });
+
+// Send activity data to REST endpoint
+function sendActivityData() {
+    // Store to localStorage in case fetch fails
+    localStorage.setItem("activityData", JSON.stringify(activityData));
+
+    fetch("/json/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            type: "activity",
+            data: activityData,
+            session: sessionId
+        })
+    }).catch(err => console.warn("Failed to send activityData:", err));
+}
