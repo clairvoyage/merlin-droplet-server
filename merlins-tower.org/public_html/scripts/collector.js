@@ -150,7 +150,6 @@ document.addEventListener("keyup", (event) => {
     Based on equiman's code from 
     https://stackoverflow.com/questions/667555/how-to-detect-idle-time-in-javascript
 */
-let activityData = {};
 window.addEventListener('load', function() {
     let enteredPage = new Date();
     let currentPage = this.window.location.href;
@@ -159,10 +158,15 @@ window.addEventListener('load', function() {
     let startms; // start in milliseconds
     let endms; // end in milliseconds
     let idle = false;
-    let idleTimes = {};
+    let activity;
 
-    activityData["timeEnteredPage"] = enteredPage;
-    activityData["currentPage"] = currentPage;
+    activity = {"timeEnteredPage": enteredPage};
+    activityLog.push(activity);
+    console.log(activity)
+
+    activity = {"currentPage": currentPage};
+    activityLog.push(activity);
+    console.log(activity)
 
     window.onload = resetTimer;
     // DOM Events
@@ -179,35 +183,21 @@ window.addEventListener('load', function() {
             end = new Date();
 
             let idleTime = (endms-startms)/1000;
-            idleTimes[end] = idleTime;
             idle = false;
-            console.log(activityData);
+            activity = {"idleDuration": idleTime, "endOfBreak": end};
+            activityLog.push(activity);
+            console.log(activity);
         }
         startms = Date.now();
         clearTimeout(time);
         time = setTimeout(logIdle, 2000)
     }
-    activityData["idleTimes"] = idleTimes;
-    setInterval(sendActivityData, 1000); 
 });
 
 // Get time user left current page
 window.addEventListener('beforeunload', function(e) {
-    activityData["timeLeftPage"] = new Date();
+    let activity = {};
+    activity["timeLeftPage"] = new Date();
+    activityLog.push(activity);
+    console.log(activity);
 });
-
-// Send activity data to REST endpoint
-function sendActivityData() {
-    // Store to localStorage in case fetch fails
-    localStorage.setItem("activityData", JSON.stringify(activityData));
-
-    fetch("/json/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            type: "activity",
-            data: activityData,
-            session: sessionId
-        })
-    }).catch(err => console.warn("Failed to send activityData:", err));
-}
