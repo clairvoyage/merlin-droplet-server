@@ -1,7 +1,6 @@
 const sessionId = crypto.randomUUID(); // ID for specific user session
 
 // Static Data
-
 document.addEventListener("DOMContentLoaded", function (event) {
     let staticData = {};
     staticData["userAgent"] = navigator.userAgent;
@@ -43,7 +42,6 @@ function noCSS() {
 }
 
 // Performance Data
-
 window.addEventListener('load', function() {
     setTimeout(function () { // allow the page to load completely before collecting
         const performanceEntry = performance.getEntriesByType("navigation")[0];
