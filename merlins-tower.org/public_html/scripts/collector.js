@@ -194,10 +194,47 @@ window.addEventListener('load', function() {
     }
 });
 
+setInterval(() => {
+    if (activityLog.length > 0) {
+        const payload = {
+            type: "activity",
+            log: activityLog.slice(), // make shallow copy
+            timestamp: Date.now(),
+            session: sessionId
+        };
+
+        fetch("/json/posts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.warn("Failed to send activityLog:", err);
+            localStorage.setItem("unsentActivity", JSON.stringify(payload));
+        });
+
+        // Clear the sent logs
+        activityLog = [];
+    }
+}, 5000); // Every 5 seconds
+
 // Get time user left current page
 window.addEventListener('beforeunload', function(e) {
     let activity = {};
     activity["timeLeftPage"] = new Date();
     activityLog.push(activity);
     console.log(activity);
+
+    const payload = {
+        type: "activity",
+        log: activityLog,
+        timestamp: Date.now(),
+        session: sessionId
+    };
+
+    fetch("/json/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true
+    });
 });
