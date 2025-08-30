@@ -74,17 +74,30 @@ window.addEventListener('load', function() {
 
 // Activity Data (continuously collected)
 
+// Set up dictionary to log activity data
+document.addEventListener("DOMContentLoaded", function (event) {
+
+});
+
 /*
     Logs when user has been idle for at least two seconds
     Based on equiman's code from 
     https://stackoverflow.com/questions/667555/how-to-detect-idle-time-in-javascript
 */
 window.addEventListener('load', function() {
-    let enteredPage = Date.now();
+    let activityData = {};
+    let enteredPage = new Date();
+    let currentPage = this.window.location.href;
     let time;
-    let start;
     let end;
+    let  startms; // start in milliseconds
+    let endms; // end in milliseconds
     let idle = false;
+    let idleTimes = {};
+
+    activityData["timeEnteredPage"] = enteredPage;
+    activityData["currentPage"] = currentPage;
+
     window.onload = resetTimer;
     // DOM Events
     document.onmousemove = resetTimer;
@@ -96,15 +109,22 @@ window.addEventListener('load', function() {
 
     function resetTimer() {
         if(idle == true) {
-            end = Date.now();
-            console.log(
-                "Break ended at " + end + "\n" +
-                (end-start)/1000 + "seconds since last activity"
-            );
+            endms = Date.now();
+            end = new Date();
+
+            let idleTime = (endms-startms)/1000;
+            idleTimes[end] = idleTime;
             idle = false;
+            console.log(activityData);
         }
-        start = Date.now();
+        startms = Date.now();
         clearTimeout(time);
         time = setTimeout(logIdle, 2000)
     }
+    activityData["idleTimes"] = idleTimes;
 });
+
+// // Get time user left current page
+// window.addEventListener('beforeunload', function(e) {
+    
+// });
