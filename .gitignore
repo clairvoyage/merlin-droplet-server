@@ -4,5 +4,5 @@
 python-hello-json-world.json
 
 # json file gets updated with requests so..
-db.json
-api.json
+# db.json
+# api.json
