@@ -1,14 +1,9 @@
-<?php
-	$servername = "merlins-lab-database-do-user-24569011-0.m.db.ondigitalocean.com";
-	$username = "doadmin";
-	$password = "AVNS_-wGatciBh4tYFnWKzT3";
+ <?php
+$mysqli = new mysqli("merlins-lab-database-do-user-24569011-0.m.db.ondigitalocean.com","doadmin","AVNS_-wGatciBh4tYFnWKzT3","api");
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password);
-
-	// Check connection
-	if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-	}
-	echo "Connected successfully";
-?>
+// Check connection
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+?> 
