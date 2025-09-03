@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         })
     }).catch(err => console.warn("Failed to send staticData:", err));
 
-    fetch("http://localhost:3002/api/static", {
+    fetch("http://localhost:3002/collect", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             session: sessionId
         })
     }).catch(err => console.warn("Failed to send staticData:", err));
+
     console.log(staticData);
 });
 
@@ -76,6 +77,7 @@ window.addEventListener('load', function() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(performanceData)
         }).catch(err => console.warn("Failed to send performanceData:", err));
+        
     }, 0);
 });
 
