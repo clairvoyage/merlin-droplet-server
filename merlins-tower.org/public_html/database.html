@@ -4,15 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <title>Database Grid</title>
-  <script src="https://cdn.zinggrid.com/dev/zinggrid.min.js" defer></script>
-<style>
-    
-    zing-grid { min-height: 280px; margin-bottom: 28px; }
-  </style>
+  <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+
 </head>
 <body>
   <h1>Static</h1>
-  <zing-grid caption="Static" src="/api/static" page-size="10" pager>
+  <zing-grid caption="Static" src="https://merlins-tower.org/api/static" page-size="10" pager>
     <!-- show useful fields (nested paths work) -->
     <zg-column index="id"></zg-column>
     <zg-column index="session"></zg-column>
@@ -23,7 +20,7 @@
   </zing-grid>
 
   <h1>Performance</h1>
-  <zing-grid caption="Performance" src="/api/performance" page-size="10" pager>
+  <zing-grid caption="Performance" src="https://merlins-tower.org/api/performance" page-size="10" pager>
     <zg-column index="id"></zg-column>
     <zg-column index="session"></zg-column>
     <zg-column index="loadStart"></zg-column>
@@ -34,7 +31,7 @@
   </zing-grid>
 
   <h1>Activity</h1>
-  <zing-grid caption="Activity" src="/api/activity" page-size="10" pager>
+  <zing-grid caption="Activity" src="https://merlins-tower.org/api/activity" page-size="10" pager>
     <zg-column index="id"></zg-column>
     <zg-column index="session"></zg-column>
     <!-- log is an array; render its length so something shows -->
