@@ -20,4 +20,14 @@ var connection = mysql.createConnection({
     database: 'api'
 });
 
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+    let sql = "INSERT INTO performance (id, name) VALUES ('3sva-m0', 'https://merlins-tower.org/')";
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("1 record inserted");
+    });
+});
+
 connection.connect();

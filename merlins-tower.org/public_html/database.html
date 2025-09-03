@@ -4,14 +4,43 @@
 <head>
   <meta charset="utf-8" />
   <title>Database Grid</title>
-  <script src="https://cdn.zinggrid.com/dev/zinggrid.min.js" defer></script>
+  <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+
 </head>
 <body>
-  <h1>peepee</h1>
-  <zing-grid src="/api/static" page-size="10" pager></zing-grid>
+  <h1>Static</h1>
+  <zing-grid caption="Static" src="https://merlins-tower.org/api/static" page-size="10" pager>
+    <!-- show useful fields (nested paths work) -->
+    <zg-column index="id"></zg-column>
+    <zg-column index="session"></zg-column>
+    <zg-column index="data.userAgent" header="User Agent"></zg-column>
+    <zg-column index="data.userLanguage" header="Lang"></zg-column>
+    <zg-column index="data.acceptsCookies" header="Accepts Cookies"></zg-column>
+    <zg-column index="data.allowCSS" header="Allow CSS"></zg-column>
+    <zg-column index="data.allowImage" header="Allow Images"></zg-column>
+    <zg-column index="data.screenDimensions" header="Screen"></zg-column>
+    <zg-column index="data.windowDimensions" header="Window"></zg-column>
+  </zing-grid>
 
-  <zing-grid src="/api/performance" page-size="10" pager></zing-grid>
+  <h1>Performance</h1>
+  <zing-grid caption="Performance" src="https://merlins-tower.org/api/performance" page-size="10" pager>
+    <zg-column index="id"></zg-column>
+    <zg-column index="session"></zg-column>
+    <zg-column index="loadStart"></zg-column>
+    <zg-column index="loadEnd"></zg-column>
+    <zg-column index="totalLoadTime" header="Total (ms)"></zg-column>
+    <zg-column index="timing.name" header="URL"></zg-column>
+    <zg-column index="timing.responseStatus" header="HTTP"></zg-column>
+  </zing-grid>
 
-  <zing-grid src="/api/activity" page-size="10" pager></zing-grid>
+  <h1>Activity</h1>
+  <zing-grid caption="Activity" src="https://merlins-tower.org/api/activity" page-size="10" pager>
+    <zg-column index="id"></zg-column>
+    <zg-column index="session"></zg-column>
+    <!-- log is an array; render its length so something shows -->
+    <zg-column header="Events"
+      renderer="function(cell){const r=cell.rowData;return (r.log&&r.log.length)||0;}">
+    </zg-column>
+  </zing-grid>
 </body>
 </html>
