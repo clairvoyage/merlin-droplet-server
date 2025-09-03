@@ -37,79 +37,10 @@
   <zing-grid caption="Activity" src="https://merlins-tower.org/api/activity" page-size="10" pager>
     <zg-column index="id"></zg-column>
     <zg-column index="session"></zg-column>
-    <zg-column header="Page"         renderer="act_page"></zg-column>
-    <zg-column header="Entered"      renderer="act_entered"></zg-column>
-    <zg-column header="Left"         renderer="act_left"></zg-column>
-    <zg-column header="Duration (s)" renderer="act_duration"></zg-column>
-
-    <zg-column header="Events"   renderer="act_events"></zg-column>
-    <zg-column header="Moves"    renderer="act_moves"></zg-column>
-    <zg-column header="Clicks"   renderer="act_clicks"></zg-column>
-    <zg-column header="Scrolls"  renderer="act_scrolls"></zg-column>
-    <zg-column header="KeyDown"  renderer="act_keydown"></zg-column>
-    <zg-column header="KeyUp"    renderer="act_keyup"></zg-column>
-    <zg-column header="Errors"   renderer="act_errors"></zg-column>
-    <zg-column header="Idle # "  renderer="act_idleBreaks"></zg-column>
-    <zg-column header="Idle (ms)" renderer="act_idleMs"></zg-column>
-
-    <!-- expand a row to see every event -->
-    <zg-details>
-        <template>
-        <zing-grid data="{{record.log}}" page-size="8">
-            <zg-column index="timestamp" header="Time"></zg-column>
-            <zg-column index="type" header="Type"></zg-column>
-            <zg-column index="x" header="x"></zg-column>
-            <zg-column index="y" header="y"></zg-column>
-            <zg-column index="button" header="btn"></zg-column>
-            <zg-column index="scrollX" header="scrollX"></zg-column>
-            <zg-column index="scrollY" header="scrollY"></zg-column>
-            <zg-column index="key" header="key"></zg-column>
-            <zg-column index="message" header="error"></zg-column>
-            <zg-column index="timeEnteredPage" header="entered"></zg-column>
-            <zg-column index="timeLeftPage" header="left"></zg-column>
-            <zg-column index="endOfBreak" header="idleEnd"></zg-column>
-            <zg-column index="idleDuration" header="idleSec"></zg-column>
-            <zg-column index="currentPage" header="page"></zg-column>
-        </zing-grid>
-        </template>
-    </zg-details>
-    </zing-grid>
-
-    <script>
-    function logOf(cell){
-        var r = cell && cell.rowData;
-        return r && Array.isArray(r.log) ? r.log : [];
-    }
-    function first(arr, k){ for (var i=0;i<arr.length;i++) if (k in arr[i]) return arr[i]; }
-    function last(arr, k){ for (var i=arr.length-1;i>=0;i--) if (k in arr[i]) return arr[i]; }
-    function count(arr, t){ var n=0; for (var i=0;i<arr.length;i++) if (arr[i].type===t) n++; return n; }
-
-    window.act_page      = c => { var e=first(logOf(c),'currentPage');      return e?e.currentPage:''; };
-    window.act_entered   = c => { var e=first(logOf(c),'timeEnteredPage');  return e?new Date(e.timeEnteredPage).toLocaleString():''; };
-    window.act_left      = c => { var e=last (logOf(c),'timeLeftPage');     return e?new Date(e.timeLeftPage).toLocaleString():''; };
-    window.act_duration  = c => {
-        var a=first(logOf(c),'timeEnteredPage'), b=last(logOf(c),'timeLeftPage');
-        if(!a||!b) return '';
-        return ((new Date(b.timeLeftPage) - new Date(a.timeEnteredPage))/1000).toFixed(1);
-    };
-
-    window.act_events    = c => logOf(c).length;
-    window.act_moves     = c => count(logOf(c),'mousemove');
-    window.act_clicks    = c => count(logOf(c),'click');
-    window.act_scrolls   = c => count(logOf(c),'scroll');
-    window.act_keydown   = c => count(logOf(c),'keydown');
-    window.act_keyup     = c => count(logOf(c),'keyup');
-    window.act_errors    = c => count(logOf(c),'error');
-
-    window.act_idleBreaks= c => {
-        var a=logOf(c), n=0; for (var i=0;i<a.length;i++) if ('idleDuration' in a[i]) n++;
-        return n;
-    };
-    window.act_idleMs    = c => {
-        var a=logOf(c), s=0; for (var i=0;i<a.length;i++) if ('idleDuration' in a[i]) s += a[i].idleDuration*1000;
-        return Math.round(s);
-    };
-    </script>
-
+    <!-- log is an array; render its length so something shows -->
+    <zg-column header="Events"
+      renderer="function(cell){const r=cell.rowData;return (r.log&&r.log.length)||0;}">
+    </zg-column>
+  </zing-grid>
 </body>
 </html>
