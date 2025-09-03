@@ -24,7 +24,7 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
     let sql = "INSERT INTO performance (id, name) VALUES ('3sva-m0', 'https://merlins-tower.org/')";
-    con.query(sql, function (err, result) {
+    connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
     });
