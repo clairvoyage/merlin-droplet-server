@@ -8,12 +8,11 @@ const app = express();
 app.use(express.json()); // lets Express read JSON bodies like req.body
 
 const pool = mysql.createPool({
-  host:     process.env.DB_HOST || 'merlins-lab-database-do-user-24569011-0.m.db.ondigitalocean.com',
+  host:     process.env.DB_HOST,
   port:     +(process.env.DB_PORT || 25060),
   user:     process.env.DB_USER || 'doadmin',
-  password: process.env.DB_PASS || 'AVNS_-wGatciBh4tYFnWKzT3',
+  password: process.env.DB_PASS,
   database: process.env.DB_NAME || 'api',
-  ssl: { rejectUnauthorized: true },      // DO requires SSL
   waitForConnections: true, connectionLimit: 5
 });
 
