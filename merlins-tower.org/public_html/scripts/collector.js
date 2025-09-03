@@ -30,6 +30,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
             session: sessionId
         })
     }).catch(err => console.warn("Failed to send staticData:", err));
+
+    fetch("http://localhost:3002/api/static", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            type: "static",
+            data: staticData,
+            session: sessionId
+        })
+    }).catch(err => console.warn("Failed to send staticData:", err));
+    console.log(staticData);
 });
 
 function allowImage() {

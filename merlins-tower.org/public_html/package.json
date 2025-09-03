@@ -9,12 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^5.1.0",
     "json-server": "^0.17.4",
     "logrocket": "^10.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.4"
   },
   "keywords": [],
-  "devDependencies": {},
   "description": ""
 }
