@@ -1,9 +1,8 @@
 const sessionId = crypto.randomUUID(); // ID for specific user session
 
 // === Static Data ===
-
+let staticData = {};
 document.addEventListener("DOMContentLoaded", function (event) {
-    let staticData = {};
     staticData["userAgent"] = navigator.userAgent;
     staticData["userLanguage"] = navigator.language;
     staticData["acceptsCookies"] = navigator.cookieEnabled;
@@ -188,6 +187,7 @@ window.addEventListener('load', function () {
             idle = false;
             activity = { "idleDuration": idleTime, "endOfBreak": end };
             activityLog.push(activity);
+            sendData();
         }
         startms = Date.now();
         clearTimeout(time);
@@ -238,3 +238,20 @@ window.addEventListener('beforeunload', function (e) {
         keepalive: true
     });
 });
+
+function sendData() {
+    fetch("http://127.0.0.1:3002/collect", {
+        method: "POST",
+        headers: { 
+            "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:3002/collect',
+            'Access-Control-Allow-Methods':'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        },
+        body: JSON.stringify({
+            type: "static",
+            data: staticData,
+            session: sessionId
+        })
+    }).catch(err => console.warn("Failed to send staticData:", err));
+}

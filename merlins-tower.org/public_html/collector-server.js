@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.post("/collect", (req, res) => {
     console.log(JSON.stringify(req.body));          // this would be the data sent with the request
-    console.log("received static data");
+    console.log("received data");
 });
 
 app.listen(3002, () => {
