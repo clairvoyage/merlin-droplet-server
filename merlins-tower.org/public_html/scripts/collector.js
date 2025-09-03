@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     staticData["userAgent"] = navigator.userAgent;
     staticData["userLanguage"] = navigator.language;
     staticData["acceptsCookies"] = navigator.cookieEnabled;
-    
-    document.cookie = "js_enabled=true; path=/"; 
+
+    document.cookie = "js_enabled=true; path=/";
     staticData["allowsJS"] = true;
     staticData["allowImage"] = allowImage();
     staticData["allowCSS"] = allowCSS();
@@ -42,16 +42,16 @@ function allowCSS() {
 
 // === Performance Data ===
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     setTimeout(function () { // allow the page to load completely before collecting
         const performanceEntry = performance.getEntriesByType("navigation")[0];
         if (!performanceEntry) return;
-        
+
 
         const performanceData = {
             type: "performance",
             timing: performanceEntry,  // whole timing object object
-            loadStart: performanceEntry.fetchStart, 
+            loadStart: performanceEntry.fetchStart,
             loadEnd: performanceEntry.loadEventEnd,
             totalLoadTime: performanceEntry.loadEventEnd - performanceEntry.fetchStart,
             session: sessionId
@@ -96,7 +96,7 @@ document.addEventListener("mousemove", (event) => {
     activityLog.push(activity);
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const activity = {
         type: "click",
         x: event.clientX,
@@ -141,7 +141,7 @@ document.addEventListener("keyup", (event) => {
     Based on equiman's code from 
     https://stackoverflow.com/questions/667555/how-to-detect-idle-time-in-javascript
 */
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     let enteredPage = new Date();
     let currentPage = this.window.location.href;
     let time;
@@ -151,10 +151,10 @@ window.addEventListener('load', function() {
     let idle = false;
     let activity;
 
-    activity = {"timeEnteredPage": enteredPage};
+    activity = { "timeEnteredPage": enteredPage };
     activityLog.push(activity);
 
-    activity = {"currentPage": currentPage};
+    activity = { "currentPage": currentPage };
     activityLog.push(activity);
 
     window.onload = resetTimer;
@@ -167,13 +167,13 @@ window.addEventListener('load', function() {
     }
 
     function resetTimer() {
-        if(idle == true) {
+        if (idle == true) {
             endms = Date.now();
             end = new Date();
 
-            let idleTime = (endms-startms)/1000;
+            let idleTime = (endms - startms) / 1000;
             idle = false;
-            activity = {"idleDuration": idleTime, "endOfBreak": end};
+            activity = { "idleDuration": idleTime, "endOfBreak": end };
             activityLog.push(activity);
         }
         startms = Date.now();
@@ -206,7 +206,7 @@ setInterval(() => {
 }, 5000); // Every 5 seconds
 
 // Get time user left current page
-window.addEventListener('beforeunload', function(e) {
+window.addEventListener('beforeunload', function (e) {
     let activity = {};
     activity["timeLeftPage"] = new Date();
     activityLog.push(activity);
