@@ -1,8 +1,10 @@
 .DS_Store
 
-# goofy python json file that keeps updating
-python-hello-json-world.json
+# Node
+node_modules/
+.env
 
-# json file gets updated with requests so..
+# Runtime data files (change on server)
 db.json
 api.json
+python-hello-json-world.json
